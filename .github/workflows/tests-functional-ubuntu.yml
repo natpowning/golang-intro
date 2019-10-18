@@ -1,0 +1,24 @@
+name: Functional Tests (Ubuntu)
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install Go
+      run: | 
+          curl -L https://dl.google.com/go/go1.13.1.linux-amd64.tar.gz -o go1.13.1.linux-amd64.tar.gz
+          tar -zxf go1.13.1.linux-amd64.tar.gz
+          sudo mv go /usr/local
+          export GOROOT=/usr/local/go
+    - name: Compile
+      run: |
+          go build
+          chmod a+rx golang-intro
+    - name: Smoke Test
+      run: bash ./tests/smoke.sh
+
