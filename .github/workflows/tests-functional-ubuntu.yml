@@ -19,6 +19,6 @@ jobs:
       run: |
           go build
           chmod a+rx golang-intro
-    - name: Smoke Test
-      run: bash ./tests/smoke.sh
+    - name: All Tests
+      run: bash ./tests/_all.sh
 

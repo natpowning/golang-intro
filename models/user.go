@@ -40,15 +40,19 @@ func GetUserByID(id int) (User, error) {
 	return User{}, fmt.Errorf("User with ID '%v' not found", id)
 }
 
-func UpdateUser(u User) User, error) {
+func UpdateUser(u User) (User, error) {
 	for i, candidate := range users {
 		if candidate.ID == u.ID {
 			users[i] = &u
+			// This line is not in the course but seems like it belongs here
+			return *users[i], nil
 		}
 	}
+
+	return User{}, fmt.Errorf("User with ID '%v' not found", u.ID)
 }
 
-func RemoveUserByID(id int) error {
+func RemoveUserById(id int) error {
 	for i, u := range users {
 		if u.ID == id {
 			users = append(users[:i], users[i+1:]...)
