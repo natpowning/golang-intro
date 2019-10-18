@@ -1,5 +1,5 @@
 if output="$(./golang-intro)"; then
-    if [[ $output == "Hello from a module, Gophers!" ]]; then
+    if [[ $output == "{2 Tricia McMillan}" ]]; then
 	    exit 0
     fi
     echo >&2 "Failure: Unexpected output: $output"
