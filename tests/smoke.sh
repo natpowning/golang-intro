@@ -1,11 +1,10 @@
-if output="$(./golang-intro)"; then
-    if [[ $output == "{2 Tricia McMillan}" ]]; then
-	    exit 0
-    fi
-    echo >&2 "Failure: Unexpected output: $output"
-else
-    echo >&2 "Failure: Unable to execute binary."
+cmd="./golang-intro"
+$cmd &
+
+output="$(curl -s http://localhost:3000/users)"
+if [[ $output == "Hello from the User Controller!" ]]; then
+    exit 0
 fi
 
+echo >&2 "Failure: Unexpected output: $output"
 exit 1
-
