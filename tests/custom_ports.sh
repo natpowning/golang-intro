@@ -3,6 +3,7 @@ echo "---"
 echo "Executing Custom Ports Test..."
 
 PORT=8081
+export PORT
 cmd="./golang-intro"
 $cmd &
 APP_PID=$!
