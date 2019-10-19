@@ -4,6 +4,7 @@ echo "Executing All Tests..."
 
 # TODO: Handle failure exit codes
 bash $DIR/smoke.sh
+bash $DIR/custom_ports.sh
 bash $DIR/user_lifecycle.sh
 
 echo "---"

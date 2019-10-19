@@ -2,13 +2,14 @@
 echo "---"
 echo "Executing User Lifecycle Tests..."
 
+PORT=8080
 cmd="./golang-intro"
 $cmd &
 APP_PID=$!
 
-output="$(curl -s -X POST -d "{\"FirstName\":\"Nat\",\"LastName\":\"Powning\"}" http://localhost:3000/users)"
+output="$(curl -s -X POST -d "{\"FirstName\":\"Nat\",\"LastName\":\"Powning\"}" http://localhost:$PORT/users)"
 if [[ $output == "{\"ID\":1,\"FirstName\":\"Nat\",\"LastName\":\"Powning\"}" ]]; then
-    output="$(curl -s -X GET http://localhost:3000/users)"
+    output="$(curl -s -X GET http://localhost:$PORT/users)"
     if [[ $output == "[{\"ID\":1,\"FirstName\":\"Nat\",\"LastName\":\"Powning\"}]" ]]; then
         echo "First User Add Successful."
     else
@@ -22,9 +23,9 @@ else
     exit 1
 fi
 
-output="$(curl -s -X DELETE http://localhost:3000/users/1)"
+output="$(curl -s -X DELETE http://localhost:$PORT/users/1)"
 if [[ $output == "" ]]; then
-    output="$(curl -s -X GET http://localhost:3000/users)"
+    output="$(curl -s -X GET http://localhost:$PORT/users)"
     if [[ $output == "[]" ]]; then
         echo "First User Delete Successful."
     else
